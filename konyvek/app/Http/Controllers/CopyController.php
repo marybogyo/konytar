@@ -35,8 +35,8 @@ class CopyController extends Controller
         $copy->save();
     }
 
-    public function destroy(Copy $copy){
-        $copy->delete();
+    public function destroy($id){
+        Copy::find($id)->delete();
     }
 }
 

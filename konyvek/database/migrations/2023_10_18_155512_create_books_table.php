@@ -16,13 +16,13 @@ return new class extends Migration
             $table->id('book_id');
             $table->string('author', 32);
             $table->longText('title', 150);
-            $table->integer('pieces')->default(50);
+        
             $table->timestamps();
         });
         Book::create([
             'author' => "Asimov", 
             'title' => "Alapítvány", 
-            'pieces' => "2"
+        
         ]);
         Book::create([
             'author' => "Kafka", 
