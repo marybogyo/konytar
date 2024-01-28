@@ -13,12 +13,13 @@ class ProfileTest extends TestCase
     public function test_profile_page_is_displayed(): void
     {
         $user = User::factory()->create();
-
+        //teszt idejéig marad csak ott
         $response = $this
             ->actingAs($user)
             ->get('/profile');
 
-        $response->assertOk();
+        $response->assertOk(); 
+        //megnézzük, hogy hiba nélkül működik a program
     }
 
     public function test_profile_information_can_be_updated(): void
@@ -38,7 +39,7 @@ class ProfileTest extends TestCase
 
         $user->refresh();
 
-        $this->assertSame('Test User', $user->name);
+        $this->assertSame('Test User', $user->name);//ellenőrzi a nevet hogy tényleg az amit beállítottam test userként
         $this->assertSame('test@example.com', $user->email);
         $this->assertNull($user->email_verified_at);
     }

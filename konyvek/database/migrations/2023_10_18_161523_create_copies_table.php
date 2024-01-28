@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('copies', function (Blueprint $table) {
             $table->id('copy_id');
-            $table->foreignId('book_id')->references('book_id')->on('books');
+            $table->foreignId('book_id')->
+            references('book_id')->on('books');
             //0: puhakötésű, 1:keménykötésű
             $table->boolean('hardcovered')->default(0);
             $table->year('publication')->default(2000);

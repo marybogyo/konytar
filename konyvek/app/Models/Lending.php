@@ -12,17 +12,26 @@ class Lending extends Model
     protected function setKeysForSaveQuery($query)
     {
         $query
-            ->where('user_id', '=', $this->getAttribute('user_id'))
-            ->where('copy_id', '=', $this->getAttribute('copy_id'))
-            ->where('start', '=', $this->getAttribute('start'));
+            ->where('user_id', '=', $this->
+            getAttribute('user_id'))
+            ->where('copy_id', '=', $this->
+            getAttribute('copy_id'))
+            ->where('start', '=', $this->
+            getAttribute('start'));
 
 
         return $query;
     }
+
+
     protected $fillable = [
         'user_id',
         'copy_id',
         'start',
     ];
 
+    public function copies() //amihez kapcsolódik a tábla
+    {    return $this->belongsTo(Copy::class, 'copy_id', 'copy_id');   }
+    public function users()
+    {    return $this->hasOne(User::class, 'id', 'user_id');   }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Lending;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LendingController extends Controller
 {
@@ -31,7 +32,9 @@ class LendingController extends Controller
      */
     public function show ($user_id, $copy_id, $start)
     {
-        $lending = Lending::where('user_id', $user_id)->where('copy_id', $copy_id)->where('start', $start)->get();
+        $lending = Lending::where('user_id', $user_id)->
+        where('copy_id', $copy_id)->
+        where('start', $start)->get();
         return $lending[0];
     }
 
@@ -53,5 +56,34 @@ class LendingController extends Controller
         Lending::where('user_id', $user_id)->
                 where('copy_id', $copy_id)->
                 where('start',$start)->delete();
+    }
+
+    public function allLendingByUserCopy(){
+        // a modellben megírt függvények neveit használom
+        $datas = Lending::with(['copies', 'users'])
+        ->get();
+        return $datas;
+    }
+
+    public function dateLendingUserCopy(){
+        $dates = Lending::with(['copies', 'users'])
+        ->where('start','=', '1983-09-12')
+        ->get();
+        return $dates;
+    }
+
+    public function idLendingUserCopy($copy_id){
+        $books = Lending::with(['copies', 'users'])
+        ->where('copy_id', $copy_id)
+        ->get();
+        return $books;
+    }
+
+    public function oneidLendingUserCopy(){
+        $user = Auth::user();
+        $oneid = Lending::with(['copies', 'users'])
+        ->where('user_id','=',$user->id)
+        ->count();
+        return $oneid;
     }
 }
