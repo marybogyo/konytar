@@ -18,6 +18,7 @@ return new class extends Migration
             references('book_id')->on('books');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->date('start')->default(now());
+            $table->tinyInteger('message');
             $table->timestamps();
         });
     }
