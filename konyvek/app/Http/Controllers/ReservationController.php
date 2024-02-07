@@ -23,9 +23,10 @@ class ReservationController extends Controller
 
     public function destroy($book_id,$user_id, $start)
     {
-        Reservation::where('book_id', $book_id)->
-                where('user_id', $user_id)->
-                where('start',$start)->delete();
+        //Reservation::where('book_id', $book_id)->
+                //where('user_id', $user_id)->
+               // where('start',$start)->delete();
+        $this->show($book_id, $user_id, $start)->delete();
     }
 
     public function store(Request $request)
