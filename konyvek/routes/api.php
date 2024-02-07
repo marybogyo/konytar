@@ -3,6 +3,7 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CopyController;
 use App\Http\Controllers\LendingController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\UserController;
 use App\Room;
 use Illuminate\Http\Request;
@@ -67,5 +68,13 @@ Route::delete('/lendings/{user_id}/{copy_id}/{start}'
 //egyéb végpontok
 Route::patch('/user_update_password/{id}', [UserController::class, 'HAuthorTitle']);
 
-
-
+Route::get('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class,
+ 'show']);
+Route::get('/reservations', [ReservationController::class,
+ 'index']);
+ Route::post('/reservations', [ReservationController::class,
+ 'store']);
+ Route::delete('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class,
+ 'destroy']);
+ Route::put('/reservations/{book_id}/{user_id}/{start}', [ReservationController::class,
+ 'update']);

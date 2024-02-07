@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-
+    
+    protected $fillable = [
+        'book_id',
+        'user_id',
+        'start',
+        'message',
+    ];
     protected function setKeysForSaveQuery($query)
     {
         $query
@@ -24,11 +30,6 @@ class Reservation extends Model
     }
 
 
-    protected $fillable = [
-        'book_id',
-        'user_id',
-        'start',
-        'message',
-    ];
+
 
 }
